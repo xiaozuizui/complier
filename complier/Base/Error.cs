@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace complier.Base
 {
-    class Error
+    public class Error
     {
+        public string errorContent;
+        public uint row;
+
+        public Error(uint row,string content)
+        {
+            this.row = row;
+            errorContent = content;
+        }
     }
 }

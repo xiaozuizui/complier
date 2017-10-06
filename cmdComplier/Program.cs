@@ -11,7 +11,7 @@ namespace cmdComplier
     {
         static void Main(string[] args)
         {
-            DisPoseLine dp = new DisPoseLine("littlemm = 20 ");
+            DisPoseLine dp = new DisPoseLine("integer littlemm = 20 ");
             dp.Dispose();
         }
     }

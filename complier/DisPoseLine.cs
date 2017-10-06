@@ -11,7 +11,9 @@ namespace complier
         public string Line_Str { get; set; }
         public KeyWord keyword { get; set; }
         public List<Token> tokens { get; set; }
+        public List<Error> errors { get; set; }
 
+        private uint testrow = 0;
 
         private int i;
 
@@ -28,28 +30,18 @@ namespace complier
             while(i<Line_Str.Length)
             {
                 if (IsAlpha(Line_Str[i]))
-                {
                     RecogId();
-                }
+
                 else if (IsDight(Line_Str[i]))
-                {
                     RecogCons();
-                }
+
                 else if (IsDelimiter(Line_Str[i]))
-                {
                     RecogSym();
-                }
+
                 else if(Line_Str[i] == ' ')
-                {
                     i++;
-                }
-                
             }
-           
         }
-
-
-
 
         private void RecogId()
         {
@@ -60,23 +52,16 @@ namespace complier
             {
                 str = str + Line_Str[i];
                 i++;
-            } while (IsAlpha(Line_Str[i]) || IsDight(Line_Str[i]));//判断是不是字母或数字，是的话继续执行  \
+            } while (IsAlpha(Line_Str[i]) || IsDight(Line_Str[i]));//判断是不是字母或数字，是的话继续执行  
 
 
-            Typecode = keyword.FindKeyWord(str);
+            Typecode = keyword.FindKeyWord(str);//是否为关键字
             Token token = new Token();//存入token文件  
-            //token.Label = tokens.Count;
             token.content = str;
             if (Typecode == 0)//不在关键字中
-            {
-                token.type = 1; //TAG
-       
-            }
+                token.type = 1; //TAG标识符
             else
-            {
-                token.type = Typecode;
-
-            }
+                token.type = Typecode;//关键字
             tokens.Add(token);
         }
 
@@ -89,9 +74,7 @@ namespace complier
             {
                 i++;
                 if (IsDight(Line_Str[i]))
-                {
                     str += Line_Str[i];
-                }
                 else if (Line_Str[i] == '.')
                 {
                     if (point)
@@ -101,9 +84,9 @@ namespace complier
                     }
                     else
                     {
-                        //Error e = new Error(rowNum, str, "出现第二个'.'号");
-                        //errors.Add(e);
-                        //flag = false;
+                        Error e = new Error(testrow, "出现第二个'.'号");
+                        errors.Add(e);
+                        flag = false;
                     }
                 }
                 else if (IsAlpha(Line_Str[i]))
@@ -113,16 +96,16 @@ namespace complier
                     {
                         i--;
                         i--;
-                        //if (point)
-                        //{
-                        //    Error e = new Error(rowNum, str, "数字开头的数字、字母串");
-                        //    errors.Add(e);
-                        //}
-                        //else
-                        //{
-                        //    Error e = new Error(rowNum, str, "实数的小数部分出现字母");
-                        //    errors.Add(e);
-                        //}
+                        if (point)
+                        {
+                            Error e = new Error(testrow, "数字开头的数字、字母串");
+                            errors.Add(e);
+                        }
+                        else
+                        {
+                            Error e = new Error(testrow, "实数的小数部分出现字母");
+                            errors.Add(e);
+                        }
                     }
                 }
                 else
@@ -180,9 +163,7 @@ namespace complier
                     i++;
                 }
             }
-        }
-
-       
+        }  
     }
 
 }
