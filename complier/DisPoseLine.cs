@@ -35,6 +35,12 @@ namespace complier
                 else if (IsDight(Line_Str[i]))
                     RecogCons();
 
+                else if (Line_Str[i] == '\r' && Line_Str[i + 1] == '\n')
+                {
+                  
+                    i++;
+                    i++;
+                }
                 else if (IsDelimiter(Line_Str[i]))
                     RecogSym();
 

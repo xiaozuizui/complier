@@ -80,33 +80,33 @@ namespace Msl.HtmlEditor
             ToggleCodeMode.Checked += new RoutedEventHandler(OnCodeModeChecked);
             ToggleCodeMode.Unchecked += new RoutedEventHandler(OnCodeModeUnchecked);
 
-            ToggleFontColor.MouseEnter += (s, e) =>
-            {
-                ShowContextMenu(s as FrameworkElement, FontColorContextMenu);
-            };
-            ToggleLineColor.MouseEnter += (s, e) =>
-            {
-                ShowContextMenu(s as FrameworkElement, LineColorContextMenu);
-            };
-            ToggleFontColor.MouseDown += (s, e) => { CloseContextMenuAll(); };
-            ToggleLineColor.MouseDown += (s, e) => { CloseContextMenuAll(); };
+            //ToggleFontColor.MouseEnter += (s, e) =>
+            //{
+            //    ShowContextMenu(s as FrameworkElement, FontColorContextMenu);
+            //};
+            //ToggleLineColor.MouseEnter += (s, e) =>
+            //{
+            //    ShowContextMenu(s as FrameworkElement, LineColorContextMenu);
+            //};
+            //ToggleFontColor.MouseDown += (s, e) => { CloseContextMenuAll(); };
+            //ToggleLineColor.MouseDown += (s, e) => { CloseContextMenuAll(); };
 
-            FontColorContextMenu.Opened += new RoutedEventHandler(OnFontColorContextMenuOpened);
-            FontColorContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
-            LineColorContextMenu.Opened += new RoutedEventHandler(OnLineColorContextMenuOpened);
-            LineColorContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
+            //FontColorContextMenu.Opened += new RoutedEventHandler(OnFontColorContextMenuOpened);
+            //FontColorContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
+            //LineColorContextMenu.Opened += new RoutedEventHandler(OnLineColorContextMenuOpened);
+            //LineColorContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
 
-            ToggleFaceImage.MouseEnter += (s, e) =>
-            {
-                ShowContextMenu(s as FrameworkElement, FaceImageContextMenu);
-            };
-            ToggleFaceImage.MouseDown += (s, e) => { CloseContextMenuAll(); };
-            FaceImageContextMenu.Opened += new RoutedEventHandler(OnFaceContextMenuOpened);
-            FaceImageContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
-            FaceImagePicker.SelectedFaceChanged += new EventHandler<PropertyChangedEventArgs<String>>(OnFacePickerSelectedChanged);
+            //ToggleFaceImage.MouseEnter += (s, e) =>
+            //{
+            //    ShowContextMenu(s as FrameworkElement, FaceImageContextMenu);
+            //};
+            //ToggleFaceImage.MouseDown += (s, e) => { CloseContextMenuAll(); };
+            //FaceImageContextMenu.Opened += new RoutedEventHandler(OnFaceContextMenuOpened);
+            //FaceImageContextMenu.Closed += (s, e) => { OnContextMenuClosed(); };
+            //FaceImagePicker.SelectedFaceChanged += new EventHandler<PropertyChangedEventArgs<String>>(OnFacePickerSelectedChanged);
 
-            FontColorPicker.SelectedColorChanged += new EventHandler<PropertyChangedEventArgs<Color>>(OnFontColorPickerSelectedColorChanged);
-            LineColorPicker.SelectedColorChanged += new EventHandler<PropertyChangedEventArgs<Color>>(OnLineColorPickerSelectedColorChanged);
+            //FontColorPicker.SelectedColorChanged += new EventHandler<PropertyChangedEventArgs<Color>>(OnFontColorPickerSelectedColorChanged);
+            //LineColorPicker.SelectedColorChanged += new EventHandler<PropertyChangedEventArgs<Color>>(OnLineColorPickerSelectedColorChanged);
         }
         private void OnPrintClick(object sender, RoutedEventArgs e)
         {
@@ -130,21 +130,21 @@ namespace Msl.HtmlEditor
         {
             timer.Stop();
         }
-        private void OnFontColorContextMenuOpened(object sender, RoutedEventArgs e)
-        {
-            FontColorPicker.Reset();
-            ToggleFontColor.IsChecked = true;
-        }
-        private void OnLineColorContextMenuOpened(object sender, RoutedEventArgs e)
-        {
-            LineColorPicker.Reset();
-            ToggleLineColor.IsChecked = true;
-        }
-        private void OnFaceContextMenuOpened(object sender, RoutedEventArgs e)
-        {
-            FaceImagePicker.Reset();
-            ToggleFaceImage.IsChecked = true;
-        }
+        //private void OnFontColorContextMenuOpened(object sender, RoutedEventArgs e)
+        //{
+        //    FontColorPicker.Reset();
+        //    ToggleFontColor.IsChecked = true;
+        //}
+        //private void OnLineColorContextMenuOpened(object sender, RoutedEventArgs e)
+        //{
+        //    LineColorPicker.Reset();
+        //    ToggleLineColor.IsChecked = true;
+        //}
+        //private void OnFaceContextMenuOpened(object sender, RoutedEventArgs e)
+        //{
+        //    FaceImagePicker.Reset();
+        //    ToggleFaceImage.IsChecked = true;
+        //}
         private void OnFontColorPickerSelectedColorChanged(object sender, PropertyChangedEventArgs<Color> e)
         {
             htmldoc.SetFontColor(e.Value);
@@ -217,7 +217,7 @@ namespace Msl.HtmlEditor
 
             ToggleBold.IsChecked = htmldoc.IsBold();
             ToggleItalic.IsChecked = htmldoc.IsItalic();
-            ToggleUnderline.IsChecked = htmldoc.IsUnderline();
+           // ToggleUnderline.IsChecked = htmldoc.IsUnderline();
             ToggleSubscript.IsChecked = htmldoc.IsSubscript();
             ToggleSuperscript.IsChecked = htmldoc.IsSuperscript();
             ToggleBulletedList.IsChecked = htmldoc.IsBulletsList();
@@ -369,8 +369,8 @@ namespace Msl.HtmlEditor
 
                 FontFamilyList.IsEnabled = true;
                 FontSizeList.IsEnabled = true;
-                ToggleFontColor.IsEnabled = true;
-                ToggleLineColor.IsEnabled = true;
+                //ToggleFontColor.IsEnabled = true;
+               // ToggleLineColor.IsEnabled = true;
 
                 VisualEditor.Document.Body.InnerHtml = GetEditContent();
                 mode = EditMode.Visual;
@@ -389,8 +389,8 @@ namespace Msl.HtmlEditor
 
                 FontFamilyList.IsEnabled = false;
                 FontSizeList.IsEnabled = false;
-                ToggleFontColor.IsEnabled = false;
-                ToggleLineColor.IsEnabled = false;
+                //ToggleFontColor.IsEnabled = false;
+                //ToggleLineColor.IsEnabled = false;
 
                 TxtEditor.Text = GetEditContent();
                 mode = EditMode.Source;
@@ -667,15 +667,15 @@ namespace Msl.HtmlEditor
         }
         private void CloseContextMenuAll()
         {
-            this.FaceImageContextMenu.IsOpen = false;
-            this.FontColorContextMenu.IsOpen = false;
-            this.LineColorContextMenu.IsOpen = false;
+          //  this.FaceImageContextMenu.IsOpen = false;
+         //   this.FontColorContextMenu.IsOpen = false;
+         //   this.LineColorContextMenu.IsOpen = false;
         }
         private void OnContextMenuClosed()
         {
-            ToggleFaceImage.IsChecked = false;
-            ToggleFontColor.IsChecked = false;
-            ToggleLineColor.IsChecked = false;
+            //ToggleFaceImage.IsChecked = false;
+          //  ToggleFontColor.IsChecked = false;
+          //  ToggleLineColor.IsChecked = false;
         }
         private void InitContainer()
         {

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:complierWPF"
         mc:Ignorable="d"
-        Title="MainEditor" Height="300" Width="300">
+        Title="littlemm的牛皮IDE" Height="500" Width="1000">
     <DockPanel>
         <Border DockPanel.Dock="Bottom"
                 BorderBrush="#FFC5C5C5"
@@ -15,14 +15,14 @@
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right"
                             Orientation="Horizontal">
-                    <Button x:Name="BindingTestButton"
-                            Content="Binding Test"
+                    <Button x:Name="Dispose"
+                            Content="词法分析"
                             Margin="8,0" />
                     <Button x:Name="GetHtmlButton"
-                            Content="GetHtml"
+                         
                             Margin="8,0" />
                     <Button x:Name="GetTextButton"
-                            Content="GetText"
+                          
                             Margin="8,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -32,6 +32,6 @@
                 </StackPanel>
             </DockPanel>
         </Border>
-        <ex:HtmlEditor x:Name="Editor" />
+        <ex:HtmlEditor x:Name="Editor"  />
     </DockPanel>
 </Window>

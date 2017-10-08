@@ -185,6 +185,7 @@
                 <ToggleButton Style="{StaticResource ToggleButtonStyle}" x:Name="ToggleItalic" ToolTip="斜体" Command="local:HtmlEditCommand.Italic">
                     <Image Style="{StaticResource ToolBarImage}" Source="/Msl.HtmlEditor;Component/Resources/Image/ke-icon-italic.png" />
                 </ToggleButton>
+                <!--
                 <ToggleButton Style="{StaticResource ToggleButtonStyle}" x:Name="ToggleUnderline" ToolTip="下划线" Command="local:HtmlEditCommand.Underline">
                     <Image Style="{StaticResource ToolBarImage}" Source="/Msl.HtmlEditor;Component/Resources/Image/ke-icon-underline.png" />
                 </ToggleButton>
@@ -237,14 +238,16 @@
                             Command="local:HtmlEditCommand.InsertImage">
                     <Image Style="{StaticResource ToolBarImage}" Source="/Msl.HtmlEditor;Component/Resources/Image/ke-icon-image.png" />
                 </ToggleButton>
-                <!--<ToggleButton ToolTip="插入附件"
+                <ToggleButton ToolTip="插入附件"
                             Command="local:HtmlEditCommand.InsertAttachment">
                         <Image Style="{StaticResource ToolBarImage}" Source="/Msl.HtmlEditor;Component/Resources/Image/ke-icon-insertfile.png" />
-                    </ToggleButton>-->
+                    </ToggleButton>
+                
                 <ToggleButton ToolTip="插入表格"
                             Command="local:HtmlEditCommand.InsertTable">
                     <Image Style="{StaticResource ToolBarImage}" Source="/Msl.HtmlEditor;Component/Resources/Image/ke-icon-table.png" />
                 </ToggleButton>
+                -->
             </ToolBar>
         </ToolBarTray>
         <Grid>
