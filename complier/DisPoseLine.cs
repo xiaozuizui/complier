@@ -37,7 +37,6 @@ namespace complier
 
                 else if (Line_Str[i] == '\r' && Line_Str[i + 1] == '\n')
                 {
-                  
                     i++;
                     i++;
                 }
@@ -158,7 +157,7 @@ namespace complier
                     i--;
                 }
             }
-            for (int j = 15; j <= 24; j++)
+            for (int j = 11; j <= 24; j++)
             {
                 if (str == keyword.Keyword[j])
                 {

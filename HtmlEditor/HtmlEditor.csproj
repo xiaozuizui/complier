@@ -198,7 +198,6 @@
   <ItemGroup>
     <Resource Include="Resources\Image\ke-icon-txt.png" />
     <Resource Include="Resources\Image\ke-icon-hr.png" />
-    <Resource Include="文档\说明.txt" />
     <Resource Include="Resources\Image\ke-icon-emoticons.png" />
     <Resource Include="Resources\Image\ke-icon-insertfile.png" />
     <Resource Include="Resources\Image\refresh.png" />
@@ -233,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="文档\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

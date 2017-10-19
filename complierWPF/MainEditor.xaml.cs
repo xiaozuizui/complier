@@ -29,6 +29,7 @@ namespace complierWPF
         {
             InitializeComponent();
             InitEvents();
+            
             InitTimer();
         }
 
@@ -38,14 +39,15 @@ namespace complierWPF
             // this.Unloaded += new RoutedEventHandler(MainWindow_Unloaded);
             //Editor.DocumentReady += new RoutedEventHandler(Editor_DocumentReady);
             Dispose.Click += new RoutedEventHandler(Show_Click);
-
-           // GetHtmlButton.Click += new RoutedEventHandler(GetHtmlButton_Click);
+            Editor.ContentText = "integer littlemm = 20；\r\nfloat a = 20.1;\r\nfloat b = a + littlemm; ";
+            // GetHtmlButton.Click += new RoutedEventHandler(GetHtmlButton_Click);
             //GetTextButton.Click += new RoutedEventHandler(GetTextButton_Click);
-           // BindingTestButton.Click += new RoutedEventHandler(BindingTestButton_Click);
+            // BindingTestButton.Click += new RoutedEventHandler(BindingTestButton_Click);
         }
 
         void InitTimer()
         {
+            
             wordCountTimer = new DispatcherTimer();
             wordCountTimer.Interval = TimeSpan.FromMilliseconds(500);
             wordCountTimer.Tick += new EventHandler(wordCountTimer_Tick);

@@ -485,6 +485,13 @@ namespace Msl.HtmlEditor
                     VisualEditor.Document.Body.InnerHtml = this.TxtEditor.Text;
                 return VisualEditor.Document.Body.InnerText;
             }
+            set {
+                if (ToggleCodeMode.IsChecked == true)
+                {
+                    VisualEditor.Document.Body.InnerHtml = this.TxtEditor.Text;
+                    VisualEditor.Document.Body.InnerText = value;
+                }
+            }
         }
 
         /// <summary>

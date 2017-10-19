@@ -20,26 +20,30 @@ namespace complier
             Keyword[3] = "FLOAT";
 
             Keyword[4] = "integer";
-            Keyword[5] = "true";
-            Keyword[6] = "false";
-            Keyword[7] = "if";
-            Keyword[8] = "else";
-            Keyword[9] = "for";
-            Keyword[10] = "bool";
-            Keyword[11] = "+";
-            Keyword[12] = "-";
-            Keyword[13] = "*";
-            Keyword[14] = "/";
-            Keyword[15] = "(";
-            Keyword[16] = ")";
-            Keyword[17] = ":";
-            Keyword[18] = ";";
-            Keyword[19] = "=";
-            Keyword[20] = ">";
-            Keyword[21] = "<";
-            Keyword[22] = "<=";
-            Keyword[23] = ">=";
-            Keyword[24] = "<>";
+            Keyword[5] = "float";
+            Keyword[6] = "true";
+            Keyword[7] = "false";
+            Keyword[8] = "if";
+            Keyword[9] = "else";
+            Keyword[10] = "or";
+            Keyword[11] = "for";
+            Keyword[12] = "bool";
+            Keyword[13] = "+";
+            Keyword[14] = "-";
+            Keyword[15] = "*";
+            Keyword[16] = "/";
+            Keyword[17] = "(";
+            Keyword[18] = ")";
+            Keyword[19] = ":";
+            Keyword[20] = ";";
+            Keyword[21] = "=";
+            Keyword[22] = ">";
+            Keyword[23] = "<";
+            Keyword[24] = "<=";
+            Keyword[25] = ">=";
+            Keyword[26] = "<>";
+            Keyword[27] = "==";
+            Keyword[28] = "!=";
             
         }
 
