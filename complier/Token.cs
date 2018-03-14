@@ -11,4 +11,11 @@ namespace complier
         public uint type { get; set; }
         public string content { get; set; }
     }
+
+
+    public class Symble
+    {
+        public uint type { get; set; }
+        public string content { get; set; }
+    }
 }

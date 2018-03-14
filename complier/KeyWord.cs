@@ -13,43 +13,56 @@ namespace complier
 
         public KeyWord()
         {
-            Keyword = new string[29];
-            Keyword[0] = "";
-            Keyword[1] = "TAG";
-            Keyword[2] = "CONSTANT";
-            Keyword[3] = "FLOAT";
+            Keyword = new string[] {
+                "",
+                "Function",
+                "TAG",//标识符
+                "CONSTANT",//常数
+                "FLOAT_CONSTANT",//浮点数
+            //4
+             "var",//变量定义
+             "integer",//整数
+             "float",
+             "bool",
+             //8
+             "begin",//语句开始
+             //9
+             "true",
+             "false",
+             "if",
+             "else",
+             "or",
+             "for",
 
-            Keyword[4] = "integer";
-            Keyword[5] = "float";
-            Keyword[6] = "true";
-            Keyword[7] = "false";
-            Keyword[8] = "if";
-            Keyword[9] = "else";
-            Keyword[10] = "or";
-            Keyword[11] = "for";
-            Keyword[12] = "bool";
-            Keyword[13] = "+";
-            Keyword[14] = "-";
-            Keyword[15] = "*";
-            Keyword[16] = "/";
-            Keyword[17] = "(";
-            Keyword[18] = ")";
-            Keyword[19] = ":";
-            Keyword[20] = ";";
-            Keyword[21] = "=";
-            Keyword[22] = ">";
-            Keyword[23] = "<";
-            Keyword[24] = "<=";
-            Keyword[25] = ">=";
-            Keyword[26] = "<>";
-            Keyword[27] = "==";
-            Keyword[28] = "!=";
+             //15
+             "+",
+             "-",
+             "*",
+             "/",
+            "(",
+            ")",
+            ":",
+            ";",
+            "=",
+            ">",
+            "<",
+            //26
+            "<=",
+            ">=",
+            "<>",
+            "==",
+            "!=",
+            //31
+        };
+
+            
+            
             
         }
 
         public uint FindKeyWord(string word)
         {
-            for(uint i=0;i<9;i++)
+            for(uint i=5;i<15;i++)
             {
                 if (word == Keyword[i])
                     return i;

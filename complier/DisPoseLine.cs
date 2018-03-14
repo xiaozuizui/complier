@@ -10,8 +10,13 @@ namespace complier
     {
         public string Line_Str { get; set; }
         public KeyWord keyword { get; set; }
+
         public List<Token> tokens { get; set; }
+        public List<Symble> symbles { get; set; }
+
+
         public List<Error> errors { get; set; }
+
 
         private uint testrow = 0;
 
@@ -23,6 +28,7 @@ namespace complier
             i = 0;
             keyword = new KeyWord();
             tokens = new List<Token>();
+            symbles = new List<Symble>();
         }
 
         public void Dispose()
@@ -41,7 +47,7 @@ namespace complier
                     i++;
                 }
 
-                else if (IsDelimiter(Line_Str[i]))//标识符
+                else if (IsDelimiter(Line_Str[i]))//符号处理
                     RecogSym();
 
                 else if(Line_Str[i] == ' ')//处理空格
@@ -65,7 +71,13 @@ namespace complier
             Token token = new Token();//存入token文件  
             token.content = str;
             if (Typecode == 0)//不在关键字中
-                token.type = 1; //TAG标识符
+            {
+                token.type = 2;
+                Symble sym = new Symble();//存入符号表
+                sym.content = str;
+                sym.type = 2; //TAG
+                symbles.Add(sym);
+            }
             else
                 token.type = Typecode;//关键字
             tokens.Add(token);
@@ -123,19 +135,26 @@ namespace complier
             if (point)
             {
                 Token token = new Token();
-
                 token.content = str;
-                token.type = 2; //nufloat
-
+                token.type = 3; //nufloat
                 tokens.Add(token);
+
+                Symble sym = new Symble();
+                sym.content = str;
+                sym.type = 3;
+                symbles.Add(sym);
             }
             else
             {
                 Token token = new Token();
-
                 token.content = str;
-                token.type = 3;//float
+                token.type = 4;//float
                 tokens.Add(token);
+
+                Symble sym = new Symble();
+                sym.content = str;
+                sym.type = 4;
+                symbles.Add(sym);
             }
         }
 
@@ -158,7 +177,8 @@ namespace complier
                     i--;
                 }
             }
-            for (int j = 13; j <= 28; j++)
+
+            for (int j = 16; j <= 31; j++) //符号识别
             {
                 if (str == keyword.Keyword[j])
                 {

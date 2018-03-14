@@ -34,6 +34,7 @@ namespace complier.Base
                 case '+': return true;
                 case '-': return true;
                 case '*': return true;
+                case '/': return true;
                 case '.': return true;
                 case ',': return true;
                 case ':': return true;

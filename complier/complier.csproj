@@ -43,6 +43,7 @@
     <Compile Include="Base\BaseFun.cs" />
     <Compile Include="Base\Error.cs" />
     <Compile Include="DisPoseLine.cs" />
+    <Compile Include="Grammar.cs" />
     <Compile Include="KeyWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token.cs" />
