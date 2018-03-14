@@ -29,21 +29,22 @@ namespace complier
         {
             while(i<Line_Str.Length)
             {
-                if (IsAlpha(Line_Str[i]))
+                if (IsAlpha(Line_Str[i]))// 字母识别
                     RecogId();
 
-                else if (IsDight(Line_Str[i]))
+                else if (IsDight(Line_Str[i]))//数字识别
                     RecogCons();
 
-                else if (Line_Str[i] == '\r' && Line_Str[i + 1] == '\n')
+                else if (Line_Str[i] == '\r' && Line_Str[i + 1] == '\n')//处理换行
                 {
                     i++;
                     i++;
                 }
-                else if (IsDelimiter(Line_Str[i]))
+
+                else if (IsDelimiter(Line_Str[i]))//标识符
                     RecogSym();
 
-                else if(Line_Str[i] == ' ')
+                else if(Line_Str[i] == ' ')//处理空格
                     i++;
             }
         }
@@ -141,7 +142,7 @@ namespace complier
         private void RecogSym()
         {
             string str = "" + Line_Str[i];
-            if (str == "<" || str == ">")
+            if (str == "<" || str == ">"||str =="=")
             {
                 i++;
                 if (Line_Str[i] == '=') //<=||>=
@@ -157,7 +158,7 @@ namespace complier
                     i--;
                 }
             }
-            for (int j = 11; j <= 24; j++)
+            for (int j = 13; j <= 28; j++)
             {
                 if (str == keyword.Keyword[j])
                 {

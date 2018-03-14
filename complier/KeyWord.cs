@@ -13,7 +13,7 @@ namespace complier
 
         public KeyWord()
         {
-            Keyword = new string[25];
+            Keyword = new string[29];
             Keyword[0] = "";
             Keyword[1] = "TAG";
             Keyword[2] = "CONSTANT";
