@@ -15,44 +15,55 @@ namespace complier
         {
             Keyword = new string[] {
                 "",
-                "Function",
+                "Function:",
                 "TAG",//标识符
                 "CONSTANT",//常数
                 "FLOAT_CONSTANT",//浮点数
             //4
+
              "var",//变量定义
              "integer",//整数
              "float",
              "bool",
-             //8
+            //8
+            
              "begin",//语句开始
-             //9
+             "end",
+
+             "while",
+             "do",
+
              "true",
              "false",
+
              "if",
+             "then",
              "else",
              "or",
-             "for",
+             "not",
 
-             //15
+             //19
              "+",
              "-",
              "*",
              "/",
             "(",
             ")",
+            ".",
             ":",
+            ",",
+            //28
             ";",
             "=",
             ">",
             "<",
-            //26
+            ":=",
             "<=",
             ">=",
-            "<>",
             "==",
             "!=",
-            //31
+            //37
+            "and"
         };
 
             
@@ -62,7 +73,7 @@ namespace complier
 
         public uint FindKeyWord(string word)
         {
-            for(uint i=5;i<15;i++)
+            for(uint i=5;i<18;i++)
             {
                 if (word == Keyword[i])
                     return i;

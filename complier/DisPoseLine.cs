@@ -70,6 +70,7 @@ namespace complier
             Typecode = keyword.FindKeyWord(str);//是否为关键字
             Token token = new Token();//存入token文件  
             token.content = str;
+
             if (Typecode == 0)//不在关键字中
             {
                 token.type = 2;
@@ -178,7 +179,7 @@ namespace complier
                 }
             }
 
-            for (int j = 16; j <= 31; j++) //符号识别
+            for (int j = 20; j <= 37; j++) //符号识别
             {
                 if (str == keyword.Keyword[j])
                 {
