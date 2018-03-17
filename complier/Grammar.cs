@@ -7,7 +7,7 @@ using complier;
 
 namespace complier
 {
-    class Grammar
+   public  class Grammar
     {
         List<Token> tokens;
         List<Symble> symbles;
@@ -18,7 +18,7 @@ namespace complier
         public Grammar(DisPoseLine m) //词法分析结果作为输入
         {
             tokens = m.tokens;
-            symbles = m.symbles;
+            //symbles = m.symbles;
         //    symbles = m.symbles;
             Dispose();
         }
@@ -68,16 +68,26 @@ namespace complier
             if (tokens[i].type == 1)// function 程序入口 
             {
                 Next();
-                if (tokens[i].type == 2)//是标识符  
+                if(tokens[i].type == 27)
                 {
-                    //执行程序体  
                     Next();
-                    MainBody();
+                    if (tokens[i].type == 2)//是标识符  
+                    {
+                        //执行程序体  
+                        Next();
+                        MainBody();
+                    }
+                    else
+                    {
+                        error = "该程序program缺少方法名";
+                    }
                 }
                 else
                 {
-                    error = "该程序program缺少方法名";
+                    error = "缺少：";
                 }
+
+               
             }
             else
             {
@@ -224,7 +234,7 @@ namespace complier
         /// </summary>
         private void Expression()
         {
-            if (tokens[i].type == 7 || tokens[i].type == 15 || (tokens[i].Addr != -1 && symbles[tokens[i].Addr].Type == 3))
+            if (tokens[i].type == 13 || tokens[i].type == 14)
             {
                 BoolExp();
             }
@@ -437,12 +447,12 @@ namespace complier
             if (error == "")
             {
                 Next();
-                if (tokens[i].type == 14)
+                if (tokens[i].type == 16)//then
                 {
                     Next();
                     ExecSent();
                     Next();
-                    if (tokens[i].type == 5)
+                    if (tokens[i].type == 17)//else
                     {
                         Next();
                         ExecSent();
@@ -463,16 +473,14 @@ namespace complier
                 error = "if语句布尔表达式出错";
             }
         }
-        #endregion
-
-        #region while语句  
+       
         private void WhileSent()
         {
             BoolExp();
             if (error == "")
             {
                 Next();
-                if (tokens[i].type == 4)
+                if (tokens[i].type == 12)//do
                 {
                     Next();
                     ExecSent();
@@ -483,7 +491,6 @@ namespace complier
                 }
             }
         }
-        #endregion
+     
     }
-}
 }

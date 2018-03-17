@@ -162,14 +162,14 @@ namespace complier
         private void RecogSym()
         {
             string str = "" + Line_Str[i];
-            if (str == "<" || str == ">"||str =="=")
+            if (str == "<" || str == ">"||str =="="||str==":")
             {
                 i++;
                 if (Line_Str[i] == '=') //<=||>=
                 {
                     str += Line_Str[i];
                 }
-                else if (Line_Str[i] == '>' && str == "<")//<>
+                else if (Line_Str[i] == '=')//:=
                 {
                     str += Line_Str[i];
                 }

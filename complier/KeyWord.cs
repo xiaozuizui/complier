@@ -15,7 +15,7 @@ namespace complier
         {
             Keyword = new string[] {
                 "",
-                "Function:",
+                "Function",
                 "TAG",//标识符
                 "CONSTANT",//常数
                 "FLOAT_CONSTANT",//浮点数
@@ -73,6 +73,12 @@ namespace complier
 
         public uint FindKeyWord(string word)
         {
+            switch(word)
+            {
+                case "Function":return 1;
+                case "and":return 38;
+            }
+         
             for(uint i=5;i<18;i++)
             {
                 if (word == Keyword[i])

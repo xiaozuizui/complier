@@ -25,6 +25,7 @@ namespace complierWPF
     {
         DispatcherTimer wordCountTimer;
         DisPoseLine dl;
+        Grammar grammar;
         public MainEditor()
         {
             InitializeComponent();
@@ -64,7 +65,10 @@ namespace complierWPF
         {
             string str = Editor.ContentText;
             dl = new DisPoseLine(str+" ");
+         
             dl.Dispose();
+            grammar = new Grammar(dl);
+
             string show="";
             foreach (Token tk in dl.tokens)
             {
