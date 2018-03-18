@@ -43,9 +43,11 @@
     <Compile Include="Base\BaseFun.cs" />
     <Compile Include="Base\Error.cs" />
     <Compile Include="DisPoseLine.cs" />
+    <Compile Include="FourPart.cs" />
     <Compile Include="Grammar.cs" />
     <Compile Include="KeyWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Semantic .cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
