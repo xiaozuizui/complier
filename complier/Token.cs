@@ -10,6 +10,7 @@ namespace complier
     {
         public uint type { get; set; }
         public string content { get; set; }
+        public int symb { get; set; }
     }
 
 
@@ -17,5 +18,6 @@ namespace complier
     {
         public uint type { get; set; }
         public string content { get; set; }
+        public int token { get; set; }
     }
 }

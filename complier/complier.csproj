@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseFun.cs" />
     <Compile Include="Base\Error.cs" />
+    <Compile Include="Base\Sentence.cs" />
     <Compile Include="DisPoseLine.cs" />
     <Compile Include="FourPart.cs" />
     <Compile Include="Grammar.cs" />

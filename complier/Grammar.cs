@@ -14,12 +14,13 @@ namespace complier
       //  List<symble> symbles;
 
         public string error = "";
+
         int i = 0;
         public Grammar(DisPoseLine m) //词法分析结果作为输入
         {
             tokens = m.tokens;
-            //symbles = m.symbles;
-        //    symbles = m.symbles;
+            symbles = m.symbles;
+       
             Dispose();
         }
 
@@ -68,7 +69,7 @@ namespace complier
             if (tokens[i].type == 1)// function 程序入口 
             {
                 Next();
-                if(tokens[i].type == 27)
+                if(tokens[i].type == 27)// :
                 {
                     Next();
                     if (tokens[i].type == 2)//是标识符  
@@ -80,11 +81,13 @@ namespace complier
                     else
                     {
                         error = "该程序program缺少方法名";
+                        return;
                     }
                 }
                 else
                 {
                     error = "缺少：";
+                    return;
                 }
 
                
@@ -92,6 +95,7 @@ namespace complier
             else
             {
                 error = "缺少程序入口";
+                return;
             }
         }
 
@@ -110,6 +114,7 @@ namespace complier
             else
             {
                 error = "程序体缺少var或begin";
+                return;
             }
         }
 
@@ -123,15 +128,15 @@ namespace complier
                     Next();
                     if (tokens[i].type == 6 || tokens[i].type == 7 || tokens[i].type == 8)//integer,float,bool  
                     {
-                     //   int j = i;
-                     //   j = j - 2;
-                     // //  symbles[tokens[j].Addr].Type = tokens[i].type;
-                     //   j--;
-                     ////   while (tokens[j].type == 28)
-                     //   {
-                     //       j--;
-                     ////       symbles[tokens[j].Addr].Type = tokens[i].type;
-                     //   }
+                        int j = i;
+                        j = j - 2; //移动到变量的位置
+                       symbles[tokens[j].symb].type = tokens[i].type;
+                        j--;
+                        while (tokens[j].type == 28) //标记当前变量
+                        {
+                            j--;
+                            symbles[tokens[j].symb].type = tokens[i].type;
+                        }
                         Next();
                         if (tokens[i].type == 29)//;号识别
                         {
@@ -149,6 +154,7 @@ namespace complier
                         else
                         {
                             error = "变量定义后面缺少；";
+                            return;
                         }
                     }
                     else
@@ -160,11 +166,13 @@ namespace complier
                 else
                 {
                     error = "var后面缺少冒号";
+                    return;
                 }
             }
             else
             {
                 error = "变量定义标识符出错";
+                return;
             }
         }
 
@@ -174,13 +182,14 @@ namespace complier
 
             if (error == "")
             {
-                if (tokens[i].type == 10)//复合句结束
+                if (tokens[i].type == 10)//复合句结束 end
                 {
                     return;
                 }
                 else
                 {
                     error = "复合句末尾缺少end";
+                    return;
                 }
             }
         }
@@ -226,6 +235,7 @@ namespace complier
             else
             {
                 error = "赋值句变量后缺少：=";
+                return;
             }
         }
 
@@ -234,7 +244,7 @@ namespace complier
         /// </summary>
         private void Expression()
         {
-            if (tokens[i].type == 13 || tokens[i].type == 14)
+            if (tokens[i].type == 13 || tokens[i].type == 14|| (tokens[i].symb != -1 && symbles[tokens[i].symb].type == 8))
             {
                 BoolExp();
             }
@@ -316,6 +326,7 @@ namespace complier
                     else
                     {
                         error = "关系运算符后缺少标识符";
+                        return;
                     }
                 }
                 else
@@ -334,11 +345,13 @@ namespace complier
                 else
                 {
                     error = "布尔量中的布尔表达式缺少一个）";
+                    return;
                 }
             }
             else
             {
                 error = "布尔量出错";
+                return;
             }
         }
 
@@ -402,6 +415,7 @@ namespace complier
                 else
                 {
                     error = "因子中算数表达式缺少）";
+                    return;
                 }
             }
             else
@@ -419,6 +433,7 @@ namespace complier
             else
             {
                 error = "算数量出错";
+                return;
             }
         }
        
@@ -466,11 +481,13 @@ namespace complier
                 else
                 {
                     error = "if...then语句缺少then";
+                    return;
                 }
             }
             else
             {
                 error = "if语句布尔表达式出错";
+                return;
             }
         }
        
@@ -488,6 +505,7 @@ namespace complier
                 else
                 {
                     error = "while语句缺少do";
+                    return;
                 }
             }
         }

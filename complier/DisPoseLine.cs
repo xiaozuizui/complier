@@ -73,14 +73,22 @@ namespace complier
 
             if (Typecode == 0)//不在关键字中
             {
+                //标识符
                 token.type = 2;
+                token.symb = symbles.Count;
+
                 Symble sym = new Symble();//存入符号表
                 sym.content = str;
                 sym.type = 2; //TAG
+                sym.token = token.symb;
                 symbles.Add(sym);
             }
             else
+            {
                 token.type = Typecode;//关键字
+                token.symb = -1;
+            }
+               
             tokens.Add(token);
         }
 
@@ -138,11 +146,15 @@ namespace complier
                 Token token = new Token();
                 token.content = str;
                 token.type = 3; //nufloat
+                token.symb = symbles.Count;
+
                 tokens.Add(token);
 
                 Symble sym = new Symble();
                 sym.content = str;
                 sym.type = 3;
+                sym.token = token.symb;
+
                 symbles.Add(sym);
             }
             else
@@ -150,11 +162,15 @@ namespace complier
                 Token token = new Token();
                 token.content = str;
                 token.type = 4;//float
+                token.symb = symbles.Count;
+
                 tokens.Add(token);
 
                 Symble sym = new Symble();
                 sym.content = str;
                 sym.type = 4;
+                sym.token = token.symb;
+
                 symbles.Add(sym);
             }
         }
@@ -186,6 +202,8 @@ namespace complier
                     Token token = new Token();
                     token.content = str;
                     token.type = (uint)j;
+                    token.symb = -1;
+
                     tokens.Add(token);
                     i++;
                 }
