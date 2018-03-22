@@ -24,7 +24,7 @@ namespace complier
         public Semantic(DisPoseLine m)
         {
             tokens = m.tokens;
-            //symbles = m.symbles;
+            symbles = m.symbles;
             //Dispose();
         }
 
@@ -87,13 +87,14 @@ namespace complier
              fourparts.Add(fp);
         }
 
-        private void Dispose()
+        public void Dispose()
         {
             if (tokens[i].type == 1)//含有Function 
             {
                 Next();
                 if(tokens[i].type==27)//识别：
                 {
+                    Next();
                     if (tokens[i].type == 2)//是标识符  
                     {
                         Emit("program", tokens[i].content, "_", "_");
@@ -270,10 +271,11 @@ namespace complier
         {
             Express temp_e = new Express();
             BoolItem(ref temp_e);
+
             if (error == "")
             {
                 Next();
-                if (tokens[i].type == 18)
+                if (tokens[i].type == 18)//or
                 {
                     int num = fourparts.Count;
                     Express temp_e2 = new Express();
@@ -309,7 +311,7 @@ namespace complier
             if (error == "")
             {
                 Next();
-                if (tokens[i].type == 38)
+                if (tokens[i].type == 38)//and
                 {
                     Next();
                     int num = fourparts.Count;
@@ -335,7 +337,7 @@ namespace complier
 
         private void BoolFactor(ref Express e)
         {
-            if (tokens[i].type == 19)
+            if (tokens[i].type == 19) //not
             {
                 Next();
                 Express temp = new Express();
@@ -370,7 +372,7 @@ namespace complier
                 if (tokens[i].type == 32 || tokens[i].type == 34 || tokens[i].type == 30 || tokens[i].type == 35 || tokens[i].type == 31)
                 {
                     Next();
-                    if (tokens[i].type == 18)
+                    if (tokens[i].type == 2)
                     {
                         e.t.Add(fourparts.Count);
                         e.f.Add(fourparts.Count+1);
@@ -383,6 +385,7 @@ namespace complier
                     else
                     {
                         error = "关系运算符后缺少标识符";
+                        Before();
                     }
                 }
                 else
@@ -428,7 +431,7 @@ namespace complier
                 if (tokens[i].type == 20 || tokens[i].type == 21)//+-
                 {
                     string[] temp = { tokens[i - 1].content, tokens[i].content };
-                    if (tokens[i - 1].type == 22)
+                    if (tokens[i - 1].type == 25) //")"
                     {
                         temp[0] = tt;
                     }
@@ -459,7 +462,7 @@ namespace complier
                 if (tokens[i].type == 22 || tokens[i].type == 23)//*/
                 {
                     string[] temp = { tokens[i - 1].content, tokens[i].content };
-                    if (tokens[i - 1].type == 22)
+                    if (tokens[i - 1].type == 25)//")"
                     {
                         temp[0] = tt;
                     }
@@ -551,6 +554,7 @@ namespace complier
 
                     Next();
                     ExecSent(ref temp_2);
+
                     Next();
                     if (tokens[i].type == 17)//else
                     {

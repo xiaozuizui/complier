@@ -319,7 +319,7 @@ namespace complier
                 if (tokens[i].type == 32 || tokens[i].type == 34 || tokens[i].type == 30 || tokens[i].type == 35 || tokens[i].type == 31 )
                 {
                     Next();
-                    if (tokens[i].type == 18)
+                    if (tokens[i].type == 2)
                     {
                         //zheng que
                     }

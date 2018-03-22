@@ -8,6 +8,11 @@ namespace complier.Base
 {
     public class Sentence
     {
+        public List<int> next;
+        public Sentence()
+        {
+            next = new List<int>();
+        }
     }
 
     public class Express
