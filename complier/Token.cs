@@ -11,6 +11,7 @@ namespace complier
         public uint type { get; set; }
         public string content { get; set; }
         public int symb { get; set; }
+        public uint Line;
     }
 
 

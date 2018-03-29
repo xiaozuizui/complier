@@ -15,10 +15,9 @@ namespace complier
         List<Token> tokens;
 
         public List<Symble> symbles = new List<Symble>();
-
-        public string error = "";
+       
         int i = 0;
-        int ti = 1;
+        int ti = 1; //临时变量
         string tt = "";
 
         public Semantic(DisPoseLine m)
@@ -104,13 +103,17 @@ namespace complier
                     }
                     else
                     {
-                        error = "该程序program缺少方法名";
+                        Error error = new Error(tokens[i].Line, "该程序program缺少方法名");
+                        errors.Add(error);
+                        
                     }
                 }
             }
             else
             {
-                error = "该程序缺少关键字：program";
+                Error error = new Error(tokens[i].Line, "该程序缺少关键字：program");
+                errors.Add(error);
+              
             }
         }
 
@@ -128,7 +131,8 @@ namespace complier
             }
             else
             {
-                error = "程序体缺少var或begin";
+                Error error = new Error(tokens[i].Line, "程序体缺少var或begin");
+                errors.Add(error);
             }
         }
 
@@ -140,13 +144,13 @@ namespace complier
                 if (tokens[i].type == 27)// 冒号识别
                 {
                     Next();
-                    if (tokens[i].type == 6 || tokens[i].type == 7 || tokens[i].type == 8)//integer,float,bool  
+                    if (tokens[i].type == 6 || tokens[i].type == 7 || tokens[i].type == 8)//integer,float,bool ,类型识别
                     {
                         int j = i;
-                        j = j - 2; //移动到变量的位置
+                        j = j - 2; //移动到变量的位置,（跳过类型名，：号)
                         symbles[tokens[j].symb].type = tokens[i].type;
                         j--;
-                        while (tokens[j].type == 28) //标记当前变量
+                        while (tokens[j].type == 28) //标记当前变量，“，”号识别
                         {
                             j--;
                             symbles[tokens[j].symb].type = tokens[i].type;
@@ -167,23 +171,28 @@ namespace complier
                         }
                         else
                         {
-                            error = "变量定义后面缺少；";
+                            Error error = new Error(tokens[i].Line, "变量定义后面缺少；");
+                            errors.Add(error);
+                           
                         }
                     }
                     else
                     {
-                        error = "变量定义缺少类型或类型定义错误";
-                        return;
+                        Error error = new Error(tokens[i].Line, "变量定义缺少类型或类型定义错误");
+                        errors.Add(error);
+                        
                     }
                 }
                 else
                 {
-                    error = "var后面缺少冒号";
+                    Error error = new Error(tokens[i].Line, "var后面缺少冒号");
+                    errors.Add(error);
                 }
             }
             else
             {
-                error = "变量定义标识符出错";
+                Error error = new Error(tokens[i].Line, "变量定义标识符出错");
+                errors.Add(error);
             }
         }
 
@@ -191,7 +200,7 @@ namespace complier
         {
             SentList();
 
-            if (error == "")
+            if (errors.Count==0 )
             {
                 if (tokens[i].type == 10)//复合句结束
                 {
@@ -199,18 +208,19 @@ namespace complier
                 }
                 else
                 {
-                    error = "复合句末尾缺少end";
+                    Error error = new Error(tokens[i].Line, "复合句末尾缺少end");
+                    errors.Add(error);
                 }
             }
         }
 
-        private void SentList()
+        private void SentList()//语句表
         {
 
             Sentence s = new Sentence();
 
             ExecSent(ref s); //执行句
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 29)//识别;
@@ -218,6 +228,7 @@ namespace complier
                     Next();
                     SentList();
                 }
+               
             }
         }
 
@@ -250,7 +261,8 @@ namespace complier
             }
             else
             {
-                error = "赋值句变量后缺少：=";
+                Error error = new Error(tokens[i].Line, "赋值句变量后缺少：=");
+                errors.Add(error);
             }
         }
 
@@ -272,7 +284,7 @@ namespace complier
             Express temp_e = new Express();
             BoolItem(ref temp_e);
 
-            if (error == "")
+            if (errors.Count==0)
             {
                 Next();
                 if (tokens[i].type == 18)//or
@@ -308,7 +320,7 @@ namespace complier
         {
             Express temp = new Express();
             BoolFactor(ref temp);
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 38)//and
@@ -384,7 +396,8 @@ namespace complier
                     }
                     else
                     {
-                        error = "关系运算符后缺少标识符";
+                        Error error = new Error(tokens[i].Line, "关系运算符后缺少标识符");
+                        errors.Add(error);
                         Before();
                     }
                 }
@@ -413,19 +426,21 @@ namespace complier
                 }
                 else
                 {
-                    error = "布尔量中的布尔表达式缺少一个）";
+                    Error error = new Error(tokens[i].Line, "布尔量中的布尔表达式缺少一个）");
+                    errors.Add(error);
                 }
             }
             else
             {
-                error = "布尔量出错";
+                Error error = new Error(tokens[i].Line, "布尔量出错");
+                errors.Add(error);
             }
         }
 
         private void AritExp()
         {
             Item();
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 20 || tokens[i].type == 21)//+-
@@ -444,7 +459,7 @@ namespace complier
                 else
                 {
                     Before();
-                    return;
+                    
                 }
             }
             else
@@ -456,7 +471,7 @@ namespace complier
         private void Item()
         {
             Factor();
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 22 || tokens[i].type == 23)//*/
@@ -497,7 +512,8 @@ namespace complier
                 }
                 else
                 {
-                    error = "因子中算数表达式缺少）";
+                    Error error = new Error(tokens[i].Line, "因子中算数表达式缺少）");
+                    errors.Add(error);
                    // return;
                 }
             }
@@ -516,7 +532,8 @@ namespace complier
             }
             else
             {
-                error = "算数量出错";
+                Error error = new Error(tokens[i].Line, "算数量出错");
+                errors.Add(error);
                 //return;
             }
         }
@@ -544,7 +561,7 @@ namespace complier
         {
             Express temp = new Express();
             BoolExp(ref temp);
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 16)//then
@@ -594,13 +611,15 @@ namespace complier
                 }
                 else
                 {
-                    error = "if...then语句缺少then";
+                   Error error =new Error(tokens[i].Line, "if...then语句缺少then");
+                    errors.Add(error);
                     return;
                 }
             }
             else
             {
-                error = "if语句布尔表达式出错";
+                Error error = new Error(tokens[i].Line, "if语句布尔表达式出错");
+                errors.Add(error);
                 return;
             }
         }
@@ -611,7 +630,7 @@ namespace complier
             Express temp = new Express();
             BoolExp(ref temp);
 
-            if (error == "")
+            if (errors.Count == 0)
             {
                 Next();
                 if (tokens[i].type == 12)//do
@@ -638,7 +657,8 @@ namespace complier
                 }
                 else
                 {
-                    error = "while语句缺少do";
+                    Error error = new Error(tokens[i].Line, "while语句缺少do");
+                    errors.Add(error);
                     return;
                 }
             }

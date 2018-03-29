@@ -77,10 +77,12 @@ namespace complierWPF
             {
                 show = show + "< " + tk.type.ToString() + " , " + tk.content + " >" + "\r";
             }
+            int i = 0;
             foreach (FourPart f in s.fourparts)
             {
-               
-                show2 = show2 + "<" + f.Op + "," + f.StrLeft + "," + f.StrRight + "," + f.JumpNum + ">" + "\r";
+
+                show2 = show2 + i.ToString() + "<" + f.Op + "," + f.StrLeft + "," + f.StrRight + "," + f.JumpNum + ">" + "\r";
+                i++;
             }
             MessageBox.Show(show);
             MessageBox.Show(show2);

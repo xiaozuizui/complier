@@ -18,7 +18,7 @@ namespace complier
         public List<Error> errors { get; set; }
 
 
-        private uint testrow = 0;
+        private uint line = 1;
 
         private int i;
 
@@ -45,6 +45,7 @@ namespace complier
                 {
                     i++;
                     i++;
+                    line++;
                 }
 
                 else if (IsDelimiter(Line_Str[i]))//符号处理
@@ -70,7 +71,7 @@ namespace complier
             Typecode = keyword.FindKeyWord(str);//是否为关键字
             Token token = new Token();//存入token文件  
             token.content = str;
-
+            token.Line = line;
             if (Typecode == 0)//不在关键字中
             {
                 //标识符
@@ -111,7 +112,7 @@ namespace complier
                     }
                     else
                     {
-                        Error e = new Error(testrow, "出现第二个'.'号");
+                        Error e = new Error(line, "出现第二个'.'号");
                         errors.Add(e);
                         flag = false;
                     }
@@ -125,12 +126,12 @@ namespace complier
                         i--;
                         if (point)
                         {
-                            Error e = new Error(testrow, "数字开头的数字、字母串");
+                            Error e = new Error(line, "数字开头的数字、字母串");
                             errors.Add(e);
                         }
                         else
                         {
-                            Error e = new Error(testrow, "实数的小数部分出现字母");
+                            Error e = new Error(line, "实数的小数部分出现字母");
                             errors.Add(e);
                         }
                     }
@@ -147,7 +148,7 @@ namespace complier
                 token.content = str;
                 token.type = 3; //nufloat
                 token.symb = symbles.Count;
-
+                token.Line = line;
                 tokens.Add(token);
 
                 Symble sym = new Symble();
@@ -161,6 +162,7 @@ namespace complier
             {
                 Token token = new Token();
                 token.content = str;
+                token.Line = line;
                 token.type = 4;//float
                 token.symb = symbles.Count;
 
@@ -201,6 +203,7 @@ namespace complier
                 {
                     Token token = new Token();
                     token.content = str;
+                    token.Line = line;
                     token.type = (uint)j;
                     token.symb = -1;
 
