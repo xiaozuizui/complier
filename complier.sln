@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "complier", "complier\complier.csproj", "{B10249F9-D3FD-486D-AEEE-ACF32DA7F3D6}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "complierWPF", "complierWPF\complierWPF.csproj", "{E4F22E7E-88A3-400F-A352-46B34D12CE6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlEditor", "HtmlEditor\HtmlEditor.csproj", "{84BADDA1-AB3A-4064-B87E-178D7446901D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pytest", "Pytest\Pytest.csproj", "{7470FF32-9DD5-4BF5-BD19-259A7E2C1527}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{84BADDA1-AB3A-4064-B87E-178D7446901D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BADDA1-AB3A-4064-B87E-178D7446901D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BADDA1-AB3A-4064-B87E-178D7446901D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7470FF32-9DD5-4BF5-BD19-259A7E2C1527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7470FF32-9DD5-4BF5-BD19-259A7E2C1527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7470FF32-9DD5-4BF5-BD19-259A7E2C1527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7470FF32-9DD5-4BF5-BD19-259A7E2C1527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94A5C2D3-F3B4-4111-81D9-2D51B222A113}
 	EndGlobalSection
 EndGlobal

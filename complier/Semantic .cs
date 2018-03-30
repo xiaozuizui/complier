@@ -180,7 +180,6 @@ namespace complier
                     {
                         Error error = new Error(tokens[i].Line, "变量定义缺少类型或类型定义错误");
                         errors.Add(error);
-                        
                     }
                 }
                 else
