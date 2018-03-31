@@ -14,6 +14,7 @@ namespace complier
         public List<Error> errors = new List<Error>();
         List<Token> tokens;
 
+        public Stack<int> IF_WHILE = new Stack<int>();
         public List<Symble> symbles = new List<Symble>();
        
         int i = 0;
@@ -154,6 +155,7 @@ namespace complier
                         {
                             j--;
                             symbles[tokens[j].symb].type = tokens[i].type;
+                            j--;
                         }
                         Next();
                         if (tokens[i].type == 29)//;号识别
@@ -390,7 +392,7 @@ namespace complier
 
                         Emit("j" + tokens[i - 1].content, tokens[i - 2].content, tokens[i].content, "-1");
                         Emit("j", "_", "_", "-1");
-
+                        IF_WHILE.Push(fourparts.Count - 1);
                         //zheng que
                     }
                     else
@@ -407,6 +409,7 @@ namespace complier
                     e.f.Add(fourparts.Count + 1);
                     Emit("jnz", tokens[i].content, "_", "-1");
                     Emit("j", "_", "_", "-1");
+                    IF_WHILE.Push(fourparts.Count - 1);
                     Next();
                     
                 }
@@ -548,11 +551,15 @@ namespace complier
             {
                 Next();
                 IfSent(ref s);
+                if (IF_WHILE.Count != 0)
+                    fourparts[IF_WHILE.Pop()].JumpNum = fourparts.Count.ToString();
             }
             else if (tokens[i].type == 11)//while
             {
                 Next();
                 WhileSent(ref s);
+                if(IF_WHILE.Count!=0)
+                    fourparts[IF_WHILE.Pop()].JumpNum = fourparts.Count.ToString();
             }
         }
 
@@ -572,11 +579,16 @@ namespace complier
                     ExecSent(ref temp_2);
 
                     Next();
+
+
                     if (tokens[i].type == 17)//else
                     {
                         Sentence temp_3 = new Sentence();
                         temp_3.next.Add(fourparts.Count);
                         Emit("j", "_", "_", "-1");
+
+                        IF_WHILE.Push(fourparts.Count-1);
+
                         Sentence temp_4 = new Sentence();
                         int num2 = fourparts.Count;
 
@@ -663,6 +675,4 @@ namespace complier
             }
         }
     }
-
-
 }

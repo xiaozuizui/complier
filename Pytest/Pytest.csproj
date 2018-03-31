@@ -77,6 +77,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Four.py" />
+    <Content Include="Interpreter.py" />
+    <Content Include="Symbol.py" />
     <Content Include="test.py" />
   </ItemGroup>
   <ItemGroup>
