@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Syntax name="VHDL">
+	<HighlightWordsRule name="Reserved language words">
+		<Words>
+		
+		</Words>
+		<IgnoreCase>true</IgnoreCase>
+		<Foreground>#0080FF</Foreground>
+		<FontWeight>Bold</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</HighlightWordsRule>
+
+	<HighlightWordsRule name="Standard packages">
+		<Words>
+			std ieee work standard textio std_logic_1164 std_logic_arith
+			std_logic_misc std_logic_signed std_logic_textio
+			std_logic_unsigned numeric_bit numeric_std math_complex
+			math_real vital_primitives vital_timing
+		</Words>
+		<IgnoreCase>true</IgnoreCase>
+		<Foreground>#C00080</Foreground>
+		<FontWeight>Normal</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</HighlightWordsRule>
+
+	<HighlightWordsRule name="Standard types">
+		<Words>
+      var float bool integer
+			
+		</Words>
+		<IgnoreCase>true</IgnoreCase>
+		<Foreground>#8000FF</Foreground>
+		<FontWeight>Normal</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</HighlightWordsRule>
+
+	<HighlightWordsRule name="Standard functions">
+		<Words>
+			while do begin Function end if then else or not 
+		</Words>
+		<IgnoreCase>true</IgnoreCase>
+		<Foreground>#0080FF</Foreground>
+		<FontWeight>Normal</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</HighlightWordsRule>
+
+	<HighlightLineRule name="Comments">
+		<LineStart>--</LineStart>
+		<IgnoreCase>false</IgnoreCase>
+		<Foreground>#009933</Foreground>
+		<FontWeight>Normal</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</HighlightLineRule>
+
+	<AdvancedHighlightRule name="Numbers">
+		<Expression>\b([0-9]+)\b</Expression>
+		<IgnoreCase>false</IgnoreCase>
+		<Foreground>#F68A1B</Foreground>
+		<FontWeight>Normal</FontWeight>
+		<FontStyle>Normal</FontStyle>
+	</AdvancedHighlightRule>
+</Syntax>

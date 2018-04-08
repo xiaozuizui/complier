@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace littlemm_IDE
 {
@@ -23,24 +24,29 @@ namespace littlemm_IDE
         public MainWindow()
         {
             InitializeComponent();
+            box.CurrentHighlighter = HighlighterManager.Instance.Highlighters["VHDL"];
         }
+
+
+
 
         private void Exit_MouseEnter(object sender, MouseEventArgs e)
         {
 
         }
-
-        private void Exit_MouseLeave(object sender, MouseEventArgs e)
+        private void MouseLeaveArea(object sender, MouseEventArgs e)
         {
 
         }
-
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void FindAndReplace_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+       private void  MouseEnterToolHinsArea(object sender,RoutedEventArgs e)
         {
 
         }
@@ -49,6 +55,24 @@ namespace littlemm_IDE
 
         }
         private void ToolsSpellingHins_Click(object sender,RoutedEventArgs e)
+        {
+
+        }
+        private void FileExit_Click(object sender,RoutedEventArgs e)
+        {
+
+        }
+        private void MouseEnterExitArea(object sender,RoutedEventArgs e)
+        {
+
+        }
+
+        private void Complie_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }

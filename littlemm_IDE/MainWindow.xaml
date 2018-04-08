@@ -3,19 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cbox ="clr-namespace:AurelienRibon.Ui.SyntaxHighlightBox;assembly=AurelienRibon.Ui.SyntaxHighlightBox"
         xmlns:local="clr-namespace:littlemm_IDE"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Menu DockPanel.Dock="Top" HorizontalAlignment="Left" Background="White" BorderBrush="Black" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"> </RowDefinition>
+            <RowDefinition Height="auto" ></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        
+            <Menu DockPanel.Dock="Top" HorizontalAlignment="Left" Background="White" BorderBrush="Black"  Grid.Row="0">
                 <MenuItem Header="文件">
                     <MenuItem Header="新建" Command="New" />
                     <MenuItem Command="Open"/>
                     <MenuItem Command="Save"/>
                     <Separator/>
                     
-                    <MenuItem Header="退出" MouseEnter="Exit_MouseEnter" MouseLeave="Exit_MouseLeave" Click="Exit_Click"/>
+                    <MenuItem Header="退出" MouseEnter="Exit_MouseEnter" MouseLeave="MouseLeaveArea" Click="Exit_Click"/>
                     
                 </MenuItem>
                 <MenuItem Header="工具">
@@ -37,7 +44,9 @@
                 </MenuItem>
 
             </Menu>
-            <ToolBar DockPanel.Dock="Top">
+            
+            
+            <ToolBar DockPanel.Dock="Top" Grid.Row="1">
                 
                 <Button  Command="New" Content="&#xE8F4;" FontFamily="Segoe MDL2 Assets" />
                 <Separator/>
@@ -57,9 +66,20 @@
                 <Button Content="&#xE711;" FontFamily="Segoe MDL2 Assets" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea" Click="FileExit_Click" Name="exit"></Button>
                 <Separator/>
 
-                <Button Content="&#xE15E;" FontFamily="Segoe MDL2 Assets"  MouseEnter="MouseEnterToolHinsArea" MouseLeave="MouseLeaveArea" Click="ToolsSpellingHins_Click" Cursor="Help" Name="check"></Button>
+                <Button Content="&#xE15E;" FontFamily="Segoe MDL2 Assets"  MouseEnter="MouseEnterToolHinsArea" MouseLeave="MouseLeaveArea" Click="ToolsSpellingHins_Click" Cursor="Help" Name="check" Margin="0,1,0,-1"></Button>
                 <Separator/>
             </ToolBar>
+        
+        <ToolBar Grid.Row="2">
+            <Button Content="&#xE713;" FontFamily="Segoe MDL2 Assets"  Click="Complie_Click"></Button>
+            <Separator/>
+
+            <Button Content="&#xE102;" FontFamily="Segoe MDL2 Assets" Click="Run_Click"></Button>
+        </ToolBar>
+       
+        
+        
+        <!---
             <ToolBar  DockPanel.Dock="Top">
                 <Button Command="Copy">
                 </Button>
@@ -79,11 +99,10 @@
                 <Separator/>
 
             </ToolBar>
-
-            <TextBox Grid.Column="1"  AcceptsReturn="True" Name="txtData"  SpellCheck.IsEnabled="True"
-                    FontSize="14" BorderBrush="Blue" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+-->
             
-        </StackPanel>
+            <cbox:SyntaxHighlightBox IsLineNumbersMarginVisible="True" x:Name="box" Grid.Row="3"></cbox:SyntaxHighlightBox>
+            
         
         
         
