@@ -13,6 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AurelienRibon.Ui.SyntaxHighlightBox;
+using complier;
+using complier.Base;
+
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+using Newtonsoft.Json;
 
 namespace littlemm_IDE
 {
@@ -21,6 +27,11 @@ namespace littlemm_IDE
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        DisPoseLine disPoseLine;
+        Grammar grammar;
+        Semantic Semantic;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -69,12 +80,44 @@ namespace littlemm_IDE
 
         private void Complie_Click(object sender, RoutedEventArgs e)
         {
+            @out.Children.Clear();
 
+            disPoseLine = new DisPoseLine(box.Text+' ');
+            disPoseLine.Dispose();
+
+            Semantic = new Semantic(disPoseLine);
+            Semantic.Dispose();
+
+            if (Semantic.errors.Count != 0)
+            {
+                foreach (Error error in Semantic.errors)
+                    @out.Children.Add(new TextBlock { Text = error.row + " |" + error.errorContent, Height = 20 });
+            }
+            else
+                @out.Children.Add(new TextBlock { Text = "   无语法错误  " ,Height = 20});
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Run_Click(object sender, RoutedEventArgs e)
         {
 
+            @out.Children.Clear();
+            four.Children.Clear();
+
+            string s = JsonConvert.SerializeObject(Semantic.fourparts);
+            string fuhao = JsonConvert.SerializeObject(Semantic.symbles);
+
+            ScriptRuntime pyrun = Python.CreateRuntime();
+            dynamic py = pyrun.UseFile("Interpreter.py");
+            var re = py.Interprete(s, fuhao);
+
+            @out.Children.Add(new TextBlock { Text = "运行结果：\n" + re,LineHeight = 20 } );
+
+            int i = 0;
+            foreach(FourPart f in Semantic.fourparts)
+            {
+                four.Children.Add(new TextBlock { Text = i.ToString()+ " < " + f.Op + " , " + f.StrLeft + " , " + f.StrRight + " , " + f.JumpNum + " >" });
+                i++;
+            }
         }
     }
 }

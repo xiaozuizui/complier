@@ -6,12 +6,14 @@
         xmlns:cbox ="clr-namespace:AurelienRibon.Ui.SyntaxHighlightBox;assembly=AurelienRibon.Ui.SyntaxHighlightBox"
         xmlns:local="clr-namespace:littlemm_IDE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"> </RowDefinition>
             <RowDefinition Height="auto" ></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="400"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         
@@ -76,6 +78,8 @@
 
             <Button Content="&#xE102;" FontFamily="Segoe MDL2 Assets" Click="Run_Click"></Button>
         </ToolBar>
+
+       
        
         
         
@@ -100,9 +104,22 @@
 
             </ToolBar>
 -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <cbox:SyntaxHighlightBox IsLineNumbersMarginVisible="True" x:Name="box" Grid.Row="3" Width="780"></cbox:SyntaxHighlightBox>
+            <Border Background="Black" Width="2" Height="400"></Border>
+            <ScrollViewer Width="210">
+                <StackPanel Name="four" ></StackPanel>
+            </ScrollViewer>
+        </StackPanel>
             
-            <cbox:SyntaxHighlightBox IsLineNumbersMarginVisible="True" x:Name="box" Grid.Row="3"></cbox:SyntaxHighlightBox>
-            
+        
+        <StackPanel Grid.Row="4" Orientation="Vertical">
+            <Border Width="1000" Background="Black" Height="2" ></Border>
+            <TextBlock Text=" ---------------------------------------------------------------------------------     little嘴嘴的编译器     ------------------------------------------------------------------------------" Height="20"></TextBlock>
+            <ScrollViewer Height="180"  >
+                <StackPanel Name="out"></StackPanel>
+            </ScrollViewer>
+        </StackPanel>
         
         
         

@@ -51,7 +51,7 @@ namespace complier
                 else if (IsDelimiter(Line_Str[i]))//符号处理
                     RecogSym();
 
-                else if(Line_Str[i] == ' ')//处理空格
+                else if(Line_Str[i] == ' '||Line_Str[i]=='\t')//处理空格
                     i++;
             }
         }

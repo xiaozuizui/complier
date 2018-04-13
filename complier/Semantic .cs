@@ -205,7 +205,7 @@ namespace complier
             {
                 if (tokens[i].type == 10)//复合句结束
                 {
-                    Emit("sys", "_", "_", "_");
+                   // Emit("sys", "_", "_", "_");
                 }
                 else
                 {
