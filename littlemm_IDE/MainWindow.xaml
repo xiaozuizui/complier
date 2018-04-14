@@ -126,7 +126,7 @@
     </Grid>
 
     <Window.CommandBindings>
-        
+        <CommandBinding Command="Open" Executed="CommandBinding_Executed_Open" ></CommandBinding>
     </Window.CommandBindings>
     
 </Window>

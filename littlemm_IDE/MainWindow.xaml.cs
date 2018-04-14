@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace littlemm_IDE
         {
             InitializeComponent();
             box.CurrentHighlighter = HighlighterManager.Instance.Highlighters["VHDL"];
+            //CommandBinding  binding = new CommandBinding()
         }
 
 
@@ -117,6 +119,20 @@ namespace littlemm_IDE
             {
                 four.Children.Add(new TextBlock { Text = i.ToString()+ " < " + f.Op + " , " + f.StrLeft + " , " + f.StrRight + " , " + f.JumpNum + " >" });
                 i++;
+            }
+        }
+
+        private void CommandBinding_Executed_Open(object sender, ExecutedRoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            ofd.DefaultExt = ".l";
+            ofd.Filter = "langula file|*.l";
+            if (ofd.ShowDialog() == true)
+            {
+                FileStream stream = new FileStream(ofd.FileName, FileMode.Open);// ofd.FileName;
+                StreamReader streamReader = new StreamReader(stream);
+                box.Text = streamReader.ReadToEnd();
+                //此处做你想做的事 ...=ofd.FileName; 
             }
         }
     }
