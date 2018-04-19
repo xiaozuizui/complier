@@ -8,10 +8,10 @@ namespace complier
 {
     public class Token
     {
-        public uint type { get; set; }
-        public string content { get; set; }
-        public int symb { get; set; }
-        public uint Line;
+        public uint type { get; set; }//类型
+        public string content { get; set; }//单词
+        public int symb { get; set; }//对应的符号表，没有用-1表示
+        public uint Line;//所在行
     }
 
 

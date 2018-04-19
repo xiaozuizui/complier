@@ -29,6 +29,7 @@ namespace complier
             keyword = new KeyWord();
             tokens = new List<Token>();
             symbles = new List<Symble>();
+            errors = new List<Error>();
         }
 
         public void Dispose()

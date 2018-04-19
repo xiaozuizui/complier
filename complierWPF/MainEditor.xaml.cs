@@ -67,25 +67,31 @@ namespace complierWPF
             dl = new DisPoseLine(str+" ");
          
             dl.Dispose();
+            string show = "";
+           
+            foreach(var erro in dl.errors)
+            {
+                show += erro.row + " " + erro.errorContent;
+            }
             // grammar = new Grammar(dl);
-            Semantic s = new Semantic(dl);
-            s.Dispose();
+            //Semantic s = new Semantic(dl);
+            //s.Dispose();
 
-            string show="";
-            string show2 = "";
-            foreach(Token tk in dl.tokens)
-            {
-                show = show + "< " + tk.type.ToString() + " , " + tk.content + " >" + "\r";
-            }
-            int i = 0;
-            foreach (FourPart f in s.fourparts)
-            {
+            //string show="";
+            //string show2 = "";
+            //foreach(Token tk in dl.tokens)
+            //{
+            //    show = show + "< " + tk.type.ToString() + " , " + tk.content + " >" + "\r";
+            //}
+            //int i = 0;
+            //foreach (FourPart f in s.fourparts)
+            //{
 
-                show2 = show2 + i.ToString() + "<" + f.Op + "," + f.StrLeft + "," + f.StrRight + "," + f.JumpNum + ">" + "\r";
-                i++;
-            }
+            //    show2 = show2 + i.ToString() + "<" + f.Op + "," + f.StrLeft + "," + f.StrRight + "," + f.JumpNum + ">" + "\r";
+            //    i++;
+            //}
             MessageBox.Show(show);
-            MessageBox.Show(show2);
+            //MessageBox.Show(show2);
 
          }
     }

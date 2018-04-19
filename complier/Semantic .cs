@@ -347,7 +347,6 @@ namespace complier
             }
         }
 
-
         private void BoolFactor(ref Express e)
         {
             if (tokens[i].type == 19) //not
@@ -579,8 +578,6 @@ namespace complier
                     ExecSent(ref temp_2);
 
                     Next();
-
-
                     if (tokens[i].type == 17)//else
                     {
                         Sentence temp_3 = new Sentence();
@@ -624,14 +621,14 @@ namespace complier
                 {
                    Error error =new Error(tokens[i].Line, "if...then语句缺少then");
                     errors.Add(error);
-                    return;
+                    
                 }
             }
             else
             {
                 Error error = new Error(tokens[i].Line, "if语句布尔表达式出错");
                 errors.Add(error);
-                return;
+               
             }
         }
 
@@ -670,7 +667,6 @@ namespace complier
                 {
                     Error error = new Error(tokens[i].Line, "while语句缺少do");
                     errors.Add(error);
-                    return;
                 }
             }
         }
