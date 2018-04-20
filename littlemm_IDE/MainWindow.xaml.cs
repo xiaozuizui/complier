@@ -39,10 +39,6 @@ namespace littlemm_IDE
             box.CurrentHighlighter = HighlighterManager.Instance.Highlighters["VHDL"];
             //CommandBinding  binding = new CommandBinding()
         }
-
-
-
-
         private void Exit_MouseEnter(object sender, MouseEventArgs e)
         {
 

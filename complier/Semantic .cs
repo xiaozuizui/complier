@@ -19,12 +19,14 @@ namespace complier
        
         int i = 0;
         int ti = 1; //临时变量
+        int syscount=0;
         string tt = "";
 
         public Semantic(DisPoseLine m)
         {
             tokens = m.tokens;
             symbles = m.symbles;
+            //syscount = symbles.Count;
             //Dispose();
         }
 
@@ -151,8 +153,10 @@ namespace complier
                         j = j - 2; //移动到变量的位置,（跳过类型名，：号)
                         symbles[tokens[j].symb].type = tokens[i].type;
                         j--;
+                     
                         while (tokens[j].type == 28) //标记当前变量，“，”号识别
                         {
+                            syscount++;
                             j--;
                             symbles[tokens[j].symb].type = tokens[i].type;
                             j--;
@@ -199,6 +203,7 @@ namespace complier
 
         private void ComSent()
         {
+            
             SentList();
 
             if (errors.Count==0 )
@@ -218,18 +223,25 @@ namespace complier
         private void SentList()//语句表
         {
 
-            Sentence s = new Sentence();
-
-            ExecSent(ref s); //执行句
-            if (errors.Count == 0)
+            if (i < tokens.Count)
             {
-                Next();
-                if (tokens[i].type == 29)//识别;
+                Sentence s = new Sentence();
+
+                ExecSent(ref s); //执行句
+                if (errors.Count == 0)
                 {
                     Next();
-                    SentList();
+                    if (tokens[i].type == 29)//识别;
+                    {
+                        Next();
+                        SentList();
+                    }
+
                 }
-               
+            }
+            else
+            {
+
             }
         }
 
@@ -255,10 +267,18 @@ namespace complier
             if (tokens[i].type == 33)//:=  
             {
                 string temp = tokens[i - 1].content;
-                Next();
-                
-                Expression();
-                Emit(":=", tt, "_", temp);
+                if(IsSys(temp))
+                {
+                    Next();
+
+                    Expression();
+                    Emit(":=", tt, "_", temp);
+                }
+               else
+                {
+                    Error error = new Error(tokens[i].Line, "赋值对象未定义");
+                    errors.Add(error);
+                }
             }
             else
             {
@@ -465,7 +485,7 @@ namespace complier
             }
             else
             {
-                return;
+                //return;
             }
         }
 
@@ -669,6 +689,26 @@ namespace complier
                     errors.Add(error);
                 }
             }
+        }
+
+        private bool IsSys(string s)
+        {
+            for(int i=1;i<=syscount+1;i++)
+            {
+                if (s == symbles[i].content)
+                    return true;
+            }
+            return false;
+        }
+
+        private bool IsRepeat(string s)
+        {
+            for (int i = 0; i <= syscount + 1; i++)
+            {
+                if (s == symbles[i].content)
+                    return true;
+            }
+            return false;
         }
     }
 }
